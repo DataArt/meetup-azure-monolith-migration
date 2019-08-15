@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{13109A19-E0D7-48E4-B8C8-A86F6035A49F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SampleWorkerRole</RootNamespace>
+    <AssemblyName>SampleWorkerRole</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RoleType>Worker</RoleType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>..\.build\bin-$(Platform)-$(Configuration)</OutputPath>
+    <IntermediateOutputPath>..\.build\obj-$(Platform)-$(Configuration)</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputPath>..\.build\bin-$(Platform)-$(Configuration)</OutputPath>
+    <IntermediateOutputPath>..\.build\obj-$(Platform)-$(Configuration)</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\atlas\src\Configuration\DataArt.Atlas.Configuration.Azure\DataArt.Atlas.Configuration.Azure.csproj">
+      <Project>{196f1a0f-94e3-49c0-8f8a-e786246bc2e8}</Project>
+      <Name>DataArt.Atlas.Configuration.Azure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\atlas\src\Configuration\DataArt.Atlas.Configuration\DataArt.Atlas.Configuration.csproj">
+      <Project>{ed06940b-fb0a-4c07-bd1f-d2c9d7fa2e40}</Project>
+      <Name>DataArt.Atlas.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\atlas\src\DataArt.Atlas.Infrastructure\DataArt.Atlas.Infrastructure.csproj">
+      <Project>{3dfa0a1d-90c2-4425-a68f-c81126e86d95}</Project>
+      <Name>DataArt.Atlas.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\atlas\src\DataArt.Atlas.Service\DataArt.Atlas.Service.csproj">
+      <Project>{234cba6d-1cfc-446c-b4df-7f094c3df321}</Project>
+      <Name>DataArt.Atlas.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\atlas\src\DataArt.Atlas.WebCommunication\DataArt.Atlas.WebCommunication.csproj">
+      <Project>{7ae07585-c2b9-435b-8355-ea069afddeb1}</Project>
+      <Name>DataArt.Atlas.WebCommunication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\atlas\src\Hosting\DataArt.Atlas.Hosting.Azure\DataArt.Atlas.Hosting.Azure.csproj">
+      <Project>{a3d863b0-dcf6-4d59-aeb3-fdb53feb4e50}</Project>
+      <Name>DataArt.Atlas.Hosting.Azure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\atlas\src\Hosting\DataArt.Atlas.Hosting\DataArt.Atlas.Hosting.csproj">
+      <Project>{51b1dab4-f219-4e8a-a28f-9eed7075545e}</Project>
+      <Name>DataArt.Atlas.Hosting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\AutofacConfig.cs" />
+    <Compile Include="AzureApplicationRunner.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Application\SampleService.cs" />
+    <Compile Include="WorkerRole.cs" />
+    <Compile Include="Areas\V1\Controllers\SettingsController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\atlas\src\.packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\atlas\src\.packages\Autofac.WebApi2.4.2.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\atlas\src\.packages\Microsoft.Azure.KeyVault.Core.3.0.3\lib\net452\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.3.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\atlas\src\.packages\WindowsAzure.Storage.9.3.3\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\atlas\src\.packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\atlas\src\.packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\atlas\src\.packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <!-- Setting AutoUnifyAssemblyReferences to false will allow the ResolveAssemblyReferences task to 
+    create warnings when detecting version missmatches among references.
+    -->
+    <AutoUnifyAssemblyReferences>false</AutoUnifyAssemblyReferences>
+  </PropertyGroup>
+</Project>

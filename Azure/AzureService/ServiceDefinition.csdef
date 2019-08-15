@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="AzureService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+  <WorkerRole name="SampleWorkerRole" vmsize="Small">
+    <Runtime executionContext="elevated" />
+    <ConfigurationSettings>
+      <!-- Logging -->
+      <Setting name="Logging.SinkUrl" />
+      <Setting name="Logging.SinkApiKey" />
+      <Setting name="Logging.Environment" />
+      <Setting name="Logging.Verbosity" />
+      <Setting name="Logging.ApplicationName" />
+    </ConfigurationSettings>
+    <Endpoints>
+      <InputEndpoint name="Hosting.Url" protocol="http" port="80" />
+    </Endpoints>
+  </WorkerRole>
+</ServiceDefinition>
